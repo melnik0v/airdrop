@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins /.*/, /localhost:\d{4}/, ENV["DOMAIN"].to_s
+    origins /.*/, /localhost:\d{4}/, Regexp.new(".*" + ENV["DOMAIN"].to_s + ".*")
 
     resource "*",
       headers: :any,
