@@ -6,14 +6,30 @@ class NearbyChannel < ApplicationCable::Channel
         broadcast_to(
           user,
           event: "users_list",
-          data: users.map { _1.as_json.merge(self: _1.id == current_user.id) }
+          data: users.as_json
         )
       end
+    end
+
+    def ask(from:, to:)
+      broadcast_to(
+        to,
+        event: "ask",
+        data: from.as_json
+      )
+    end
+
+    def decline(from:, to:)
+      broadcast_to(
+        to,
+        event: "decline",
+        data: from.as_json
+      )
     end
   end
 
   def subscribed
-    stream_for current_user
+    stream_or_reject_for current_user
     current_user.online!
     self.class.update_list(current_user)
   end
@@ -21,5 +37,10 @@ class NearbyChannel < ApplicationCable::Channel
   def unsubscribed
     current_user.offline!
     self.class.update_list(current_user)
+  end
+
+  def ask(params)
+    user = User.find_by!(fingerprint: params["fingerprint"])
+    self.class.ask(from: current_user, to: user)
   end
 end

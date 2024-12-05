@@ -1,14 +1,16 @@
 <script setup>
 defineProps({
-  device: Object,
+  device: Object
 })
+
+const fp = window.fingerprint
 </script>
 
 <template>
   <div class="device">
     <img src="../assets/vue.svg" />
     <span>{{ device.name }}</span>
-    <span v-if="device.self">self</span>
+    <span v-if="device.fingerprint === fp">self</span>
   </div>
 </template>
 

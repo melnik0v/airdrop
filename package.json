@@ -4,16 +4,18 @@
   "dependencies": {
     "@rails/actioncable": "^8.0.0",
     "@thumbmarkjs/thumbmarkjs": "^0.16.1",
+    "@vueuse/core": "^12.0.0",
+    "pinia": "^2.3.0",
     "vue": "^3.4.26"
   },
   "devDependencies": {
     "@types/rails__actioncable": "^6.1.11",
     "@vite-pwa/assets-generator": "^0.2.4",
+    "@vitejs/plugin-vue": "^5.0.4",
     "vite": "^5.2.10",
     "vite-plugin-pwa": "^0.20.0",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "workbox-window": "^7.1.0",
-    "vite-plugin-ruby": "^5.1.0"
+    "vite-plugin-ruby": "^5.1.0",
+    "workbox-window": "^7.1.0"
   },
   "resolutions": {
     "sharp": "0.32.6",
