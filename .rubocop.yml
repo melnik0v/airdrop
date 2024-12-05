@@ -1,0 +1,148 @@
+# Omakase Ruby styling for Rails
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-faker
+  - rubocop-performance
+  - rubocop-thread_safety
+
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  Exclude:
+    - script/*
+    - db/schema.rb
+    - vendor/**/*
+    - tmp/**/*
+    - log/**/*
+    - node_modules/**/*
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+  EnforcedStyle: compact
+
+Style/BlockDelimiters:
+  Enabled: true
+  EnforcedStyle: line_count_based
+
+Style/Lambda:
+  Enabled: true
+  EnforcedStyle: line_count_dependent
+
+RSpec/NestedGroups:
+  Enabled: false
+
+Layout/CaseIndentation:
+  Enabled: false
+
+Layout/SpaceInsideStringInterpolation:
+  EnforcedStyle: no_space
+
+Layout/LineLength:
+  AutoCorrect: false
+  Enabled: true
+  Max: 100
+  Exclude:
+    - spec/**/*.rb
+    - config/routes.rb
+    - config/routes/*.rb
+    - /**/*.jbuilder
+  AllowedPatterns:
+    - \A#
+
+Metrics/ModuleLength:
+  Enabled: true
+  Exclude:
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 20
+  Exclude:
+    - config/routes/*.rb
+    - db/migrate/*rb
+
+Metrics/ClassLength:
+  Enabled: true
+  Max: 150
+
+Metrics/BlockLength:
+  Enabled: true
+  Max: 30
+  Exclude:
+    - lib/**/*
+    - config/routes.rb
+    - config/routes/*.rb
+    - config/environments/*.rb
+    - /**/*.jbuilder
+
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - staging
+    - development
+    - test
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: true
+  Max: 25
+
+RSpec/MultipleExpectations:
+  Max: 4
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - db/migrate/*rb
+    - config/routes/*.rb
+
+Metrics/CyclomaticComplexity:
+  Enabled: true
+  Exclude:
+
+Metrics/PerceivedComplexity:
+  Enabled: true
+  Exclude:
+
+Naming/MethodParameterName:
+  Enabled: true
+  AllowedNames:
+    - j
+    - id
+    - e
+
+ThreadSafety/ClassInstanceVariable:
+  Enabled: false
+
+Naming/MethodName:
+  Enabled: true
+  Exclude:
+    - app/types/types.rb
+
+Naming/ConstantName:
+  Enabled: true
+  Exclude:
+    - app/types/types.rb
+
+Naming/VariableNumber:
+  Enabled: false
