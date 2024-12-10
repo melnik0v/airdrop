@@ -13,8 +13,12 @@ module ApplicationCable
       ip = "127.0.0.1" if ip == "::1"
       User.find_or_create_by!(fingerprint: request.params["device"]).tap do |user|
         user.ip = ip
-        user.name ||= (RandomNameGenerator.flip_mode.compose(2) + " " + RandomNameGenerator.flip_mode.compose(3))
+        user.name ||= ["[U]", rand(2), rand(3)].join(" ")
       end
+    end
+
+    def rand(number)
+      RandomNameGenerator.flip_mode.compose(number)
     end
   end
 end

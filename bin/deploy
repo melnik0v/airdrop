@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+ssh root@a13v.com -t \
+<< EOF
+echo "Hey I was just SSHed by ${MY_DNS}"
+cd airdrop
+git pull
+docker rm --force a13v
+docker rmi --force a13v
+docker build --tag a13v:latest --label airdrop .
+docker run -d --rm -p 80:80 -e RAILS_MASTER_KEY=$(cat config/master.key) --name a13v a13v
+echo "\\n\\tSuccessful deploy"
+
+EOF
