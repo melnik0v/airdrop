@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 # CORE
 gem "bootsnap", require: false
-gem "rails", "~> 8.0.0"
+gem "rails", "~> 8.0.1"
 gem "sqlite3", ">= 2.1"
 gem "puma", ">= 5.0"
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
